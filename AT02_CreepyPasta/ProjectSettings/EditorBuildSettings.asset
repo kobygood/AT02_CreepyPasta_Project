@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Main Menu.unity
+    guid: 76e20bcab2d969144bd474bdd3ec3924
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: acfb67548f801cb42820e138c39bde53
+  - enabled: 1
+    path: Assets/Scenes/HorrorSchool.unity
+    guid: 3744c22669e79c846b9c98b52ce90f7b
   m_configObjects: {}

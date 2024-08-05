@@ -5451,6 +5451,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 30b92673b9b7ef44c9c11a474d9910c9, type: 2}
+    - target: {fileID: 4837261912146267444, guid: d6f543cb20a478a46982271640de025e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4837261912146267444, guid: d6f543cb20a478a46982271640de025e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 4842206765614674781, guid: d6f543cb20a478a46982271640de025e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -10098,7 +10106,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7955288984198491197, guid: d6f543cb20a478a46982271640de025e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1947594768}
   m_SourcePrefab: {fileID: 100100000, guid: d6f543cb20a478a46982271640de025e, type: 3}
 --- !u!1 &1035910726
 GameObject:
@@ -10243,10 +10254,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  defaultSpeed: 3.79
-  gravity: 16.7
+  defaultSpeed: 3.16
+  gravity: 31.2
   disableJump: 0
-  jumpForce: 10.6
+  jumpForce: 10.1
   jumpClips: []
 --- !u!114 &1917318145
 MonoBehaviour:
@@ -10474,6 +10485,31 @@ Transform:
   - {fileID: 355317436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1947594763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7955288984198491197, guid: d6f543cb20a478a46982271640de025e, type: 3}
+  m_PrefabInstance: {fileID: 437322797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1947594768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947594763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c636042cba1b640a4d7b32a2f515a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 0
+  active: 1
+  disableOnSuccessfulInteraction: 0
+  interactionClip: {fileID: 0}
+  openOnStart: 0
+  lockGroup: []
+  lockedInteractionClip: {fileID: 0}
+  lockedOnStart: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

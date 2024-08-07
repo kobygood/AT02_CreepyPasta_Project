@@ -15,16 +15,21 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject inventorySlotPrefab;
     public Transform slotParent;
-    public TextMeshProUGUI selectedItemText; // Add this field to show selected item name
 
     private bool isInventoryOpen = false;
-    private int selectedItemIndex = -1; // Index of the currently selected item
+    private int selectedItemIndex = -1;
 
     private void Start()
     {
         // Start with inventory closed
-        inventoryPanel.SetActive(false);
-        UpdateSelectedItem(-1); // Start with no item selected
+        if (inventoryPanel != null)
+        {
+            inventoryPanel.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Inventory Panel is not assigned in the Inspector");
+        }
     }
 
     private void Update()
@@ -49,16 +54,14 @@ public class Inventory : MonoBehaviour
     private void ToggleInventory()
     {
         isInventoryOpen = !isInventoryOpen;
-        inventoryPanel.SetActive(isInventoryOpen);
+        if (inventoryPanel != null)
+        {
+            inventoryPanel.SetActive(isInventoryOpen);
+        }
 
-        // Only update inventory display if it's opened
         if (isInventoryOpen)
         {
             DisplayInventory();
-        }
-        else
-        {
-            UpdateSelectedItem(-1); // Clear selected item when inventory is closed
         }
     }
 
@@ -73,6 +76,12 @@ public class Inventory : MonoBehaviour
 
     private void DisplayInventory()
     {
+        if (slotParent == null)
+        {
+            Debug.LogError("Slot Parent is not assigned in the Inspector");
+            return;
+        }
+
         // Clear existing slots
         foreach (Transform child in slotParent)
         {
@@ -100,19 +109,6 @@ public class Inventory : MonoBehaviour
         if (index >= 0 && index < items.Count)
         {
             selectedItemIndex = index;
-            UpdateSelectedItem(index);
-        }
-    }
-
-    private void UpdateSelectedItem(int index)
-    {
-        if (index >= 0 && index < items.Count)
-        {
-            selectedItemText.text = $"Selected Item: {items[index].itemName}";
-        }
-        else
-        {
-            selectedItemText.text = "No Item Selected";
         }
     }
 }

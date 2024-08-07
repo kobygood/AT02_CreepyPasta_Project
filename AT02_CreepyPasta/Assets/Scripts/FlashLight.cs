@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    private Light m_Light;
+    Light m_Light;
     public bool drainOverTime;
     public float maxBrightness;
     public float minBrightness;
     public float drainRate;
 
+    private Inventory inventory; // Reference to the player's inventory
+
     // Start is called before the first frame update
     void Start()
     {
         m_Light = GetComponent<Light>();
-        m_Light.intensity = maxBrightness; // Ensure the flashlight starts at max brightness
+        inventory = FindObjectOfType<Inventory>(); // Find the inventory in the scene
     }
 
     // Update is called once per frame
     void Update()
     {
         m_Light.intensity = Mathf.Clamp(m_Light.intensity, minBrightness, maxBrightness);
-        if (drainOverTime == true && m_Light.enabled == true)
+        if (drainOverTime && m_Light.enabled)
         {
             if (m_Light.intensity > minBrightness)
             {
@@ -32,10 +34,22 @@ public class Flashlight : MonoBehaviour
         {
             m_Light.enabled = !m_Light.enabled;
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RechargeFlashlight();
+        }
     }
 
-    public float GetLightIntensity()
+    private void RechargeFlashlight()
     {
-        return m_Light.intensity;
+        if (inventory != null)
+        {
+            Item battery = inventory.GetItemByName("Battery");
+            if (battery != null && battery.isBattery)
+            {
+                m_Light.intensity = maxBrightness;
+                inventory.RemoveItem(battery);
+            }
+        }
     }
 }

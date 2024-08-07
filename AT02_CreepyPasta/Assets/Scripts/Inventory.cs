@@ -7,6 +7,7 @@ public class Item
 {
     public string itemName;
     public Sprite itemIcon;
+    public bool isBattery; // Add this field to differentiate batteries from other items
 }
 
 public class Inventory : MonoBehaviour
@@ -15,6 +16,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject inventorySlotPrefab;
     public Transform slotParent;
+    public TextMeshProUGUI batteryCountText; // Add this field
 
     private bool isInventoryOpen = false;
     private int selectedItemIndex = -1;
@@ -30,6 +32,8 @@ public class Inventory : MonoBehaviour
         {
             Debug.LogError("Inventory Panel is not assigned in the Inspector");
         }
+
+        UpdateBatteryCount(); // Update the battery count at the start
     }
 
     private void Update()
@@ -72,6 +76,17 @@ public class Inventory : MonoBehaviour
         {
             DisplayInventory();
         }
+        UpdateBatteryCount();
+    }
+
+    public void RemoveItem(Item item)
+    {
+        items.Remove(item);
+        if (isInventoryOpen)
+        {
+            DisplayInventory();
+        }
+        UpdateBatteryCount();
     }
 
     private void DisplayInventory()
@@ -109,6 +124,20 @@ public class Inventory : MonoBehaviour
         if (index >= 0 && index < items.Count)
         {
             selectedItemIndex = index;
+        }
+    }
+
+    public Item GetItemByName(string itemName)
+    {
+        return items.Find(item => item.itemName == itemName);
+    }
+
+    private void UpdateBatteryCount()
+    {
+        if (batteryCountText != null)
+        {
+            int batteryCount = items.FindAll(item => item.isBattery).Count;
+            batteryCountText.text = "Batteries: " + batteryCount;
         }
     }
 }

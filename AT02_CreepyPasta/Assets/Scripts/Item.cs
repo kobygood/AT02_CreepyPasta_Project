@@ -1,5 +1,7 @@
+using UnityEngine;
+
 [System.Serializable]
-public class Item
+public class GameItem
 {
     public string itemName;   // Name of the item
     public Sprite itemIcon;   // Icon of the item

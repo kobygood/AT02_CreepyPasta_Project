@@ -1,3 +1,5 @@
+//Made By Koby Good-Gerne 10/08/2024
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +12,14 @@ public class Flashlight : MonoBehaviour
     public float minBrightness;
     public float drainRate;
 
-    private Inventory inventory; // Reference to the player's inventory
+    private Inventory inventory;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_Light = GetComponent<Light>();
-        inventory = FindObjectOfType<Inventory>(); // Find the inventory in the scene
+        inventory = FindObjectOfType<Inventory>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         m_Light.intensity = Mathf.Clamp(m_Light.intensity, minBrightness, maxBrightness);
@@ -40,7 +40,7 @@ public class Flashlight : MonoBehaviour
         }
     }
 
-    private void RechargeFlashlight()
+    private void RechargeFlashlight() //
     {
         if (inventory != null)
         {
@@ -51,5 +51,10 @@ public class Flashlight : MonoBehaviour
                 inventory.RemoveItem(battery);
             }
         }
+    }
+
+    public float GetLightIntensity()
+    {
+        return m_Light.intensity;
     }
 }

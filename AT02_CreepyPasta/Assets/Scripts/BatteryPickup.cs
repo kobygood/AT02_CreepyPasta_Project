@@ -11,8 +11,8 @@ public class BatteryPickup : MonoBehaviour
             Inventory inventory = other.GetComponent<Inventory>();
             if (inventory != null)
             {
-                inventory.AddItem(batteryItem);
-                Destroy(gameObject); // Remove battery from the scene
+                inventory.AddItem(batteryItem); // Add battery to the inventory
+                Destroy(gameObject); // Destroy the battery item in the scene
             }
         }
     }

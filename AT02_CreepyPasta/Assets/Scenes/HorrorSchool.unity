@@ -19217,9 +19217,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1806632728509580196, guid: d6f543cb20a478a46982271640de025e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1504516247}
-    - targetCorrespondingSourceObject: {fileID: 1806632728509580196, guid: d6f543cb20a478a46982271640de025e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1504516246}
     - targetCorrespondingSourceObject: {fileID: 7955288984198491197, guid: d6f543cb20a478a46982271640de025e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1947594768}
@@ -19618,7 +19615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108038271100546340, guid: d86ca2f4159e6a942abd8dfc52b38395, type: 3}
       propertyPath: m_Shadows.m_Type
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20093,29 +20090,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1806632728509580196, guid: d6f543cb20a478a46982271640de025e, type: 3}
   m_PrefabInstance: {fileID: 437322797}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1504516246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1504516242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640bdfd688619e54bad2f021cb9a7258, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debug: 0
-  active: 1
-  disableOnSuccessfulInteraction: 0
-  interactionClip: {fileID: 8300000, guid: 813ffbafda30af44ebae04d12051b3ce, type: 3}
-  readingContent: test
-  disengageClip: {fileID: 8300000, guid: 813ffbafda30af44ebae04d12051b3ce, type: 3}
-  interactionEventsFireOnce: 1
-  interactionEventsFireOnDisengage: 1
-  interactionEvents:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &1504516247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20801,7 +20775,7 @@ MonoBehaviour:
   distance: 3
   interactionLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
 --- !u!1 &1947594763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7955288984198491197, guid: d6f543cb20a478a46982271640de025e, type: 3}

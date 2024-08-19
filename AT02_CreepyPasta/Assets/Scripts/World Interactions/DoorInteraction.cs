@@ -3,11 +3,11 @@ using UnityEngine;
 #region AUTHOR & COPYRIGHT DETAILS
 /// Original Author: Joshua Ferguson
 /// Contact: Joshua Ferguson <Josh.Ferguson@smtafe.wa.edu.au>.
-/// Contributing Authors: 
+/// Contributing Authors:
 /// Last Updated: March, 2024
-/// 
+///
 /// ###---**COPYRIGHT STATEMENT**---###
-/// © Copyright 2024 South Metropolitan TAFE. All rights reserved.
+/// ï¿½ Copyright 2024 South Metropolitan TAFE. All rights reserved.
 /// This code is provided to student's of South Metropolitan TAFE for educational purposes only.
 /// Unauthorized use, including but not limited to sharing, redistributing, copying, or commercialising
 /// this code or any part of it, without the express written permission of the authors, is strictly prohibited.
@@ -27,6 +27,7 @@ public class DoorInteraction : Interactable
     [SerializeField] protected AudioClip lockedInteractionClip;
     [Tooltip("Set to true to lock the door when the game starts.")]
     [SerializeField] private bool lockedOnStart = false;
+    [SerializeField] private InteractionTextController interactionTextController;
 
     private bool locked = false;
     private Animator anim;
@@ -84,20 +85,10 @@ public class DoorInteraction : Interactable
     public override bool OnInteract(out Interactable engagedAction)
     {
         engagedAction = null;
-        if (Active == true)
+        if (Active)
         {
             ToggleDoorState();
-            if (disableOnSuccessfulInteraction == true)
-            {
-                Active = false;
-                foreach (DoorInteraction door in lockGroup)
-                {
-                    if (door != this)
-                    {
-                        door.Active = false;
-                    }
-                }
-            }
+            interactionTextController.HideText(); // Hide text after interaction
             return true;
         }
         return false;
@@ -160,5 +151,27 @@ public class DoorInteraction : Interactable
                 PlaySound(interactionClip, aSrc);
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            string actionText = IsOpen() ? "Press E to close door" : "Press E to open door";
+            interactionTextController.ShowText(actionText);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            interactionTextController.HideText();
+        }
+    }
+
+    public bool IsOpen()
+    {
+        return anim.GetBool("open");
     }
 }

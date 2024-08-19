@@ -73,10 +73,12 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\World Interactions\DoorInteraction.cs" />
     <Compile Include="Assets\Scripts\Player\Footsteps.cs" />
+    <Compile Include="Assets\Scripts\InteractonTextController.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\World Interactions\EventTriggerCollider.cs" />
     <Compile Include="Assets\Scripts\GUIManager.cs" />
     <Compile Include="Assets\Scripts\Player\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\UIfollowcamera.cs" />
     <Compile Include="Assets\Scripts\World Interactions\Interactable.cs" />
   </ItemGroup>
   <ItemGroup>

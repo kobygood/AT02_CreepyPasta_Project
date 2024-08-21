@@ -1,9 +1,19 @@
 using UnityEngine;
 
 [System.Serializable]
-public class GameItem
+public class Item
 {
-    public string itemName;   // Name of the item
-    public Sprite itemIcon;   // Icon of the item
-    public bool isBattery;    // Flag to indicate if the item is a battery
+    public string itemName;
+    public Sprite icon;
+    public int quantity;
+    public bool isConsumable;
+
+    // Constructor
+    public Item(string name, Sprite icon, int quantity, bool isConsumable)
+    {
+        this.itemName = name;
+        this.icon = icon;
+        this.quantity = quantity;
+        this.isConsumable = isConsumable;
+    }
 }

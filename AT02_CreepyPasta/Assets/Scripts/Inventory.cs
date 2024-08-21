@@ -1,143 +1,97 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-
-[System.Serializable]
-public class Item
-{
-    public string itemName;
-    public Sprite itemIcon;
-    public bool isBattery; // Add this field to differentiate batteries from other items
-}
 
 public class Inventory : MonoBehaviour
 {
     public List<Item> items = new List<Item>();
-    public GameObject inventoryPanel;
-    public GameObject inventorySlotPrefab;
-    public Transform slotParent;
-    public TextMeshProUGUI batteryCountText; // Add this field
+    public GameObject inventoryUI;  // Reference to the inventory UI panel
+    public Sprite flashlightIcon;  // Assign this in the Inspector with an appropriate sprite
 
     private bool isInventoryOpen = false;
-    private int selectedItemIndex = -1;
 
-    private void Start()
+    void Start()
     {
-        // Start with inventory closed
-        if (inventoryPanel != null)
+        // Ensure the inventory UI is closed at the start
+        if (inventoryUI != null)
         {
-            inventoryPanel.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("Inventory Panel is not assigned in the Inspector");
+            inventoryUI.SetActive(false);
         }
 
-        UpdateBatteryCount(); // Update the battery count at the start
+        // Add the flashlight to the inventory at the start
+        AddFlashlightToInventory();
     }
 
-    private void Update()
+    void Update()
     {
-        // Toggle inventory visibility when the I key is pressed
+        // Toggle inventory visibility with 'I'
         if (Input.GetKeyDown(KeyCode.I))
         {
             ToggleInventory();
         }
+    }
 
-        // Change selected item based on number keys 1-5
-        if (isInventoryOpen)
+    // Method to add an item to the inventory
+    public void AddItem(Item newItem)
+    {
+        Item existingItem = items.Find(item => item.itemName == newItem.itemName);
+
+        if (existingItem != null)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) SelectItem(0);
-            if (Input.GetKeyDown(KeyCode.Alpha2)) SelectItem(1);
-            if (Input.GetKeyDown(KeyCode.Alpha3)) SelectItem(2);
-            if (Input.GetKeyDown(KeyCode.Alpha4)) SelectItem(3);
-            if (Input.GetKeyDown(KeyCode.Alpha5)) SelectItem(4);
+            existingItem.quantity += newItem.quantity;
+        }
+        else
+        {
+            items.Add(newItem);
         }
     }
 
-    private void ToggleInventory()
+    // Method to use an item from the inventory
+    public void UseItem(Item item)
     {
-        isInventoryOpen = !isInventoryOpen;
-        if (inventoryPanel != null)
+        if (item.isConsumable && item.quantity > 0)
         {
-            inventoryPanel.SetActive(isInventoryOpen);
-        }
+            item.quantity--;
 
-        if (isInventoryOpen)
-        {
-            DisplayInventory();
-        }
-    }
-
-    public void AddItem(Item item)
-    {
-        items.Add(item);
-        if (isInventoryOpen)
-        {
-            DisplayInventory();
-        }
-        UpdateBatteryCount();
-    }
-
-    public void RemoveItem(Item item)
-    {
-        items.Remove(item);
-        if (isInventoryOpen)
-        {
-            DisplayInventory();
-        }
-        UpdateBatteryCount();
-    }
-
-    private void DisplayInventory()
-    {
-        if (slotParent == null)
-        {
-            Debug.LogError("Slot Parent is not assigned in the Inspector");
-            return;
-        }
-
-        // Clear existing slots
-        foreach (Transform child in slotParent)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Create new slots
-        for (int i = 0; i < items.Count; i++)
-        {
-            Item item = items[i];
-            GameObject slot = Instantiate(inventorySlotPrefab, slotParent);
-            slot.GetComponentInChildren<UnityEngine.UI.Image>().sprite = item.itemIcon;
-            slot.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
-
-            // Optionally, you can add some indication of selection here
-            if (i == selectedItemIndex)
+            if (item.quantity <= 0)
             {
-                slot.GetComponentInChildren<UnityEngine.UI.Image>().color = Color.yellow; // Highlight selected item
+                items.Remove(item);
             }
-        }
-    }
 
-    private void SelectItem(int index)
-    {
-        if (index >= 0 && index < items.Count)
+            Debug.Log($"Used {item.itemName}");
+        }
+        else
         {
-            selectedItemIndex = index;
+            Debug.Log($"{item.itemName} cannot be used or is out of stock.");
         }
     }
 
+    // Method to get an item by its name
     public Item GetItemByName(string itemName)
     {
         return items.Find(item => item.itemName == itemName);
     }
 
-    private void UpdateBatteryCount()
+    // Method to toggle the inventory UI
+    private void ToggleInventory()
     {
-        if (batteryCountText != null)
+        if (inventoryUI != null)
         {
-            int batteryCount = items.FindAll(item => item.isBattery).Count;
-            batteryCountText.text = "Batteries: " + batteryCount;
+            isInventoryOpen = !isInventoryOpen;
+            inventoryUI.SetActive(isInventoryOpen);
+
+            // Optional: Lock cursor when inventory is open
+            Cursor.lockState = isInventoryOpen ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = isInventoryOpen;
         }
+    }
+
+    // Method to add the flashlight to the inventory at the start
+    private void AddFlashlightToInventory()
+    {
+        // Assuming you have a flashlight icon and other necessary data
+        Item flashlightItem = new Item("Flashlight", flashlightIcon, 1, false);
+        AddItem(flashlightItem);
+
+        Debug.Log("Flashlight added to inventory");
     }
 }

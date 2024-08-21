@@ -1,4 +1,4 @@
-//Made By Koby Good-Gerne 10/08/2024
+// Made By Koby Good-Gerne 10/08/2024
 
 using System.Collections;
 using System.Collections.Generic;
@@ -40,21 +40,31 @@ public class Flashlight : MonoBehaviour
         }
     }
 
-    private void RechargeFlashlight() //
-    {
-        if (inventory != null)
-        {
-            Item battery = inventory.GetItemByName("Battery");
-            if (battery != null && battery.isBattery)
-            {
-                m_Light.intensity = maxBrightness;
-                inventory.RemoveItem(battery);
-            }
-        }
-    }
-
     public float GetLightIntensity()
     {
         return m_Light.intensity;
+    }
+
+     public void ToggleLight()
+        {
+            m_Light.enabled = !m_Light.enabled;
+        }
+
+
+    // Added by ChatGPT on 20/08/2024: Added method to recharge the flashlight using inventory items.
+    void RechargeFlashlight()
+    {
+        Item battery = inventory.GetItemByName("Battery"); // Get the battery item from the inventory
+
+        if (battery != null && battery.quantity > 0)
+        {
+            m_Light.intensity = maxBrightness; // Recharge flashlight to max brightness
+            inventory.UseItem(battery); // Use one battery from the inventory
+            Debug.Log("Flashlight recharged!");
+        }
+        else
+        {
+            Debug.Log("No batteries available to recharge the flashlight.");
+        }
     }
 }

@@ -13,16 +13,51 @@ public class InventorySlot : MonoBehaviour
     private Inventory inventory;
 
     // Set up the slot with the item information
-    public void SetItem(Item item, Inventory inventory)
-    {
-        currentItem = item;
-        this.inventory = inventory;
+   public void SetItem(Item item, Inventory inventory)
+   {
+       currentItem = item;
+       this.inventory = inventory;
 
-        icon.sprite = item.icon;
-        itemNameText.text = item.itemName;
-        quantityText.text = item.quantity.ToString();
-        useButton.interactable = item.isConsumable || item.itemName == "Flashlight";
-    }
+       // Ensure the icon is set and enabled
+       if (item.icon != null)
+       {
+           icon.sprite = item.icon;
+           icon.enabled = true;  // Ensure the icon is enabled
+       }
+       else
+       {
+           icon.enabled = false;  // Disable the icon if no sprite is assigned
+       }
+
+       // Ensure the item name and quantity text are set and enabled
+       itemNameText.text = item.itemName;
+       itemNameText.enabled = true;  // Ensure the item name text is enabled
+
+       quantityText.text = item.quantity.ToString();
+       quantityText.enabled = true;  // Ensure the quantity text is enabled
+
+       // Show or hide the button based on whether the item is consumable
+       if (item.isConsumable)
+       {
+           useButton.gameObject.SetActive(true);  // Show the button
+           useButton.interactable = true;  // Make the button interactable
+       }
+       else
+       {
+           useButton.gameObject.SetActive(false);  // Hide the button
+       }
+
+       // Debugging statements to verify the component states
+       Debug.Log("Setting item: " + item.itemName);
+       Debug.Log("Icon enabled: " + icon.enabled);
+       Debug.Log("ItemNameText enabled: " + itemNameText.enabled);
+       Debug.Log("QuantityText enabled: " + quantityText.enabled);
+       Debug.Log("UseButton active: " + useButton.gameObject.activeSelf);
+       Debug.Log("UseButton interactable: " + useButton.interactable);
+   }
+
+
+
 
     // Called when the "Use" button is pressed
     public void OnUseButtonPressed()

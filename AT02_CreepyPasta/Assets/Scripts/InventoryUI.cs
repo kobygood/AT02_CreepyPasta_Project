@@ -8,6 +8,13 @@ public class InventoryUI : MonoBehaviour
 
     void Start()
     {
+        // Check if all necessary references are assigned
+        if (inventory == null || inventorySlotPrefab == null || inventoryPanel == null)
+        {
+            Debug.LogError("InventoryUI is not set up correctly. Please assign all references in the Inspector.");
+            return;
+        }
+
         UpdateInventoryUI();  // Update the UI at the start
     }
 
@@ -26,6 +33,9 @@ public class InventoryUI : MonoBehaviour
             GameObject slot = Instantiate(inventorySlotPrefab, inventoryPanel);
             InventorySlot inventorySlot = slot.GetComponent<InventorySlot>();
             inventorySlot.SetItem(item, inventory);
+
+            // Debugging help: Log that a slot was created for an item
+            Debug.Log("Created inventory slot for item: " + item.itemName);
         }
     }
 }

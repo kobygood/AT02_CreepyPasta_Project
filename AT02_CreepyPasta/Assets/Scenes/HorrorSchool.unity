@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31980243, g: 0.31970745, b: 0.34024665, a: 1}
+  m_IndirectSpecularColor: {r: 0.31980237, g: 0.31970742, b: 0.3402465, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27781,7 +27781,7 @@ GameObject:
   - component: {fileID: 1560629386}
   - component: {fileID: 1560629385}
   - component: {fileID: 1560629384}
-  - component: {fileID: 1560629383}
+  - component: {fileID: 1560629388}
   m_Layer: 5
   m_Name: BatteryCanvas
   m_TagString: Untagged
@@ -27789,21 +27789,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1560629383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560629382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4327ac6e7bba69440a28f654deb1768b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashlight: {fileID: 1183581692}
-  batteryFill: {fileID: 697396659}
-  maxBrightness: 0
 --- !u!114 &1560629384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27888,6 +27873,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1560629388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560629382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c57af0dd2297946b11499f546be2c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashlight: {fileID: 1183581692}
+  batteryFill: {fileID: 697396659}
 --- !u!1001 &1573480896
 PrefabInstance:
   m_ObjectHideFlags: 0

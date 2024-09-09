@@ -2205,6 +2205,8 @@ MonoBehaviour:
   interactionEvents:
     m_PersistentCalls:
       m_Calls: []
+  assignedNoteOverlay: {fileID: 0}
+  assignedNoteText: {fileID: 0}
 --- !u!65 &809574887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4716,8 +4718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  noteOverlay: {fileID: 958351436}
-  noteText: {fileID: 472752276}
+  noteOverlays: []
+  noteTexts: []
   authorCardOverlay: {fileID: 101326078}
   authorCardText: {fileID: 1134269336}
 --- !u!1 &1677614650

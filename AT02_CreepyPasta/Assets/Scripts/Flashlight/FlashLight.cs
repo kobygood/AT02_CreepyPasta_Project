@@ -58,11 +58,11 @@ public class Flashlight : MonoBehaviour
         {
             m_Light.intensity = maxBrightness; 
             inventory.UseItem(battery); 
-            Debug.Log("Flashlight recharged!");
+            Debug.Log("Flashlight Recharged");
         }
         else
         {
-            Debug.Log("No batteries available to recharge the flashlight.");
+            Debug.Log("No batteries.");
         }
     }
 }

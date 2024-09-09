@@ -80,8 +80,8 @@
     <Compile Include="Assets\Scripts\Interaction\NoteInteraction.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Flashlight\BatteryUI.cs" />
-    <Compile Include="Assets\Scripts\Interaction\InteractonTextController.cs" />
     <Compile Include="Assets\Scripts\Manager\GUIManager.cs" />
+    <Compile Include="Assets\Scripts\Interaction\InteractonTextController.cs" />
     <Compile Include="Assets\Scripts\Camera\UIfollowcamera.cs" />
     <Compile Include="Assets\Scripts\Other\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Player\MouseLook.cs" />

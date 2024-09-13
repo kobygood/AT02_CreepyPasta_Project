@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Interaction\ButtonInteraction.cs" />
     <Compile Include="Assets\Scripts\Door\DoorSoundsControls.cs" />
     <Compile Include="Assets\Scripts\Flashlight\FlashLight.cs" />
+    <Compile Include="Assets\Scripts\Other\Timer.cs" />
     <Compile Include="Assets\Scripts\Door\DoorInteraction.cs" />
     <Compile Include="Assets\Imported Assets\Keypad\Scripts\Keypad.cs" />
     <Compile Include="Assets\Scripts\Player\Footsteps.cs" />

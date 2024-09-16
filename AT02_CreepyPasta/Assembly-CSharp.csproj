@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Other\Timer.cs" />
     <Compile Include="Assets\Scripts\Door\DoorInteraction.cs" />
     <Compile Include="Assets\Imported Assets\Keypad\Scripts\Keypad.cs" />
+    <Compile Include="Assets\Scripts\Flashlight\Battery.cs" />
     <Compile Include="Assets\Scripts\Player\Footsteps.cs" />
     <Compile Include="Assets\Scripts\Interaction\NoteInteraction.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />

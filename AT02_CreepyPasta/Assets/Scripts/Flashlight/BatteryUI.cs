@@ -10,6 +10,7 @@ public class BatteryUI : MonoBehaviour
 
     void Start()
     {
+        //UI is full green on start
         if (flashlight == null)
         {
             flashlight = FindObjectOfType<Flashlight>();
@@ -28,7 +29,7 @@ public class BatteryUI : MonoBehaviour
 
        
         batteryFill.fillAmount = batteryPercentage;
-
+        //changes the colour of the battery UI from green to red as it loses intensity
         if (batteryPercentage > 0.5f)
         {
             batteryFill.color = Color.Lerp(Color.yellow, Color.green, (batteryPercentage - 0.5f) * 2);

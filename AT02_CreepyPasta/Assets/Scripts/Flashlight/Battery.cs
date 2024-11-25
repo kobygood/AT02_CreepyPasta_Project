@@ -12,6 +12,7 @@ public class Battery : MonoBehaviour
 
     void Start()
     {
+        //starts the game with interact text set to false
         if (interactText != null)
         {
             interactText.gameObject.SetActive(false);
@@ -20,6 +21,7 @@ public class Battery : MonoBehaviour
 
     void Update()
     {
+        //When the player is in range and they press their assigned interact key it will pick up the battery
         if (isInRange && Input.GetKeyDown(interactKey))
         {
             PickupBattery();
@@ -28,6 +30,7 @@ public class Battery : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //shows the interact text when a player is in range
         if (other.CompareTag("Player"))
         {
             flashlight = other.GetComponentInChildren<Flashlight>();
@@ -38,6 +41,7 @@ public class Battery : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        //stops showing interact text when a player is no longer in range
         if (other.CompareTag("Player"))
         {
             isInRange = false;
@@ -47,6 +51,7 @@ public class Battery : MonoBehaviour
 
     void PickupBattery()
     {
+        //adds battery to the flashlight and stops showing interact text
         if (flashlight != null)
         {
             flashlight.AddBattery(intensityToAdd);

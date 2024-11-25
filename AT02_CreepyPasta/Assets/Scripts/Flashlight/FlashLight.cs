@@ -15,6 +15,7 @@ public class Flashlight : MonoBehaviour
     
     void Start()
     {
+        //assigns flashlight and sets the max brightness at start
         m_Light = GetComponent<Light>();
         m_Light.intensity = maxBrightness; 
     }
@@ -22,14 +23,17 @@ public class Flashlight : MonoBehaviour
     
     void Update()
     {
+        //sets a minumum and maximum brightness
         m_Light.intensity = Mathf.Clamp(m_Light.intensity, minBrightness, maxBrightness);
         if (drainOverTime == true && m_Light.enabled == true)
         {
+            //drains the flashlight battery over time and decreases light intensity
             if (m_Light.intensity > minBrightness)
             {
                 m_Light.intensity -= Time.deltaTime * (drainRate / 1000);
             }
         }
+        //when the player presses F it toggles flashlight on/off
         if (Input.GetKeyDown(KeyCode.F))
         {
             m_Light.enabled = !m_Light.enabled;
